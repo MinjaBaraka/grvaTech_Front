@@ -9,9 +9,11 @@ export const useAuthStore = defineStore('auth', () => {
   const message = ref(null)
   const router = useRouter()
 
-  const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://grva-tech-api.vercel.app/api'  // Production URL
-  : 'http://localhost:3000/api'  // Development URL
+  // const API_BASE_URL = import.meta.env.PROD 
+  // ? 'https://grva-tech-api.vercel.app/api' 
+  // : 'http://localhost:3000/api'  
+
+   const API_BASE_URL = 'https://grva-tech-api.vercel.app/api'
 
 
   // Register new user
