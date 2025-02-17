@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
@@ -8,12 +9,13 @@ export const useAuthStore = defineStore('auth', () => {
   const error = ref(null)
   const message = ref(null)
   const router = useRouter()
+  
 
   // const API_BASE_URL = import.meta.env.PROD 
-  // ? 'https://grva-tech-api.vercel.app/api' 
+  // ? 'https://vercel.com/minjabarakas-projects/grva-tech-api' 
   // : 'http://localhost:3000/api'  
 
-   const API_BASE_URL = 'https://grva-tech-api.vercel.app'
+   const API_BASE_URL = 'https://vercel.com/minjabarakas-projects/grva-tech-api'
 
 
   // Register new user
@@ -21,7 +23,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+        const response = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -53,7 +55,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -84,8 +86,7 @@ export const useAuthStore = defineStore('auth', () => {
   async function logout() {
     loading.value = true
     try {
-      await fetch(`${API_BASE_URL}/api/auth/logout`, {
-        method: 'POST',
+        await axios.post(`${API_BASE_URL}/api/auth/logout`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -105,7 +106,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
+      const response = await axios.get(`${API_BASE_URL}/api/auth/profile`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -131,8 +132,7 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
     message.value = null
     try {
-        const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
-        method: 'PUT',
+        const response = await axios.put(`${API_BASE_URL}/api/auth/profile`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
