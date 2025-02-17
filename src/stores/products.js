@@ -7,11 +7,9 @@ export const useProductStore = defineStore('products', () => {
   const error = ref(null)
 
     // Use your Vercel deployment URL
-    // const API_BASE_URL = import.meta.env.PROD 
-    // ? 'https://vercel.com/minjabarakas-projects/grva-tech-api' 
-    // : 'http://localhost:3000/api'  
-
-     const API_BASE_URL = 'https://vercel.com/minjabarakas-projects/grva-tech-api'
+    const API_BASE_URL = import.meta.env.PROD 
+    ? 'https://vercel.com/minjabarakas-projects/grva-tech-api' 
+    : 'http://localhost:3000'  
 
 
   async function fetchProducts() {
