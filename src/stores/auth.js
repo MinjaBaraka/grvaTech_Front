@@ -13,7 +13,7 @@ export const useAuthStore = defineStore('auth', () => {
   // ? 'https://grva-tech-api.vercel.app/api' 
   // : 'http://localhost:3000/api'  
 
-   const API_BASE_URL = 'https://grva-tech-api.vercel.app/api'
+   const API_BASE_URL = 'https://grva-tech-api.vercel.app'
 
 
   // Register new user
@@ -21,7 +21,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ export const useAuthStore = defineStore('auth', () => {
   async function logout() {
     loading.value = true
     try {
-      await fetch('http://localhost:3000/api/auth/logout', {
+      await fetch(`${API_BASE_URL}/api/auth/logout`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -105,7 +105,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch('http://localhost:3000/api/auth/profile', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -131,7 +131,7 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
     message.value = null
     try {
-      const response = await fetch('http://localhost:3000/api/auth/profile', {
+        const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

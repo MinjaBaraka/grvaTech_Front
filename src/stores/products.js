@@ -11,14 +11,14 @@ export const useProductStore = defineStore('products', () => {
     // ? 'https://grva-tech-api.vercel.app/api'  
     // : 'http://localhost:3000/api'  
 
-     const API_BASE_URL = 'https://grva-tech-api.vercel.app/api'
+     const API_BASE_URL = 'https://grva-tech-api.vercel.app'
 
 
   async function fetchProducts() {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${API_BASE_URL}/services`)
+      const response = await fetch(`${API_BASE_URL}/api/services`)
       products.value = await response.json()
     } catch (err) {
       error.value = 'Failed to load products'
@@ -32,7 +32,7 @@ export const useProductStore = defineStore('products', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${API_BASE_URL}/services/${id}`)
+      const response = await fetch(`${API_BASE_URL}/api/services/${id}`)
       if (!response.ok) throw new Error('Product not found')
       return await response.json()
     } catch (err) {
