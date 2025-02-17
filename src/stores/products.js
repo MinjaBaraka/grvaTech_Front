@@ -11,7 +11,7 @@ export const useProductStore = defineStore('products', () => {
     // ? 'https://vercel.com/minjabarakas-projects/grva-tech-api' 
     // : 'http://localhost:3000/api'  
 
-     const API_BASE_URL = 'https://vercel.com/minjabarakas-projects/grva-tech-api'
+     const API_BASE_URL = 'https://grva-tech-api.vercel.app/'
 
 
   async function fetchProducts() {
